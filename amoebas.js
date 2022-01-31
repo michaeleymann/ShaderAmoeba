@@ -8,21 +8,27 @@ let hunting;
 
 var theShader;
 var shaderTexture;
+let bg;
 
 // GAME VARIABLES
 let numbAmoebas = MAX_AMOEBAS;
 let minSpeed = 0.3;
-let maxSpeed = 1.3;
-let randomFactor = 0.9;
+let maxSpeed = 1.9;
+let randomFactor = 0.95;
+// Random Factor defines how big the probability of tumbling is
+let swarmFactor = 0.9; 
+// Swarm factor defines how far from target an amoeba wants to go but also 
+// increases randomness of movement. 
+// 0 for pretty straight movement to target, 0.9 looks nice above 1.5 they  
+// hardly move towards target
 let targetDistance = 4;
 let numbFood = 15;
 
 // ---------- PRELOAD --------
-
 function preload() {
 
   theShader = new p5.Shader(this.renderer, vertShader, fragShader);
-
+  
 }
 
 //  ---------- P5 SETUP -----------
@@ -31,7 +37,6 @@ function setup() {
   createCanvas( windowWidth, windowHeight, WEBGL );
   shaderTexture = createGraphics( width, height, WEBGL );
   shaderTexture.noStroke();
-  
   noCursor();
 
   // Draw Amoebas
@@ -41,6 +46,7 @@ function setup() {
 //  ----------  P5 DRAW LOOP  ----------
 function draw() {
   translate( -width / 2, -height / 2 );
+
 
   // Let Amoebas be Amoebas
   for (let i = 0; i < amoebas.length; i++){

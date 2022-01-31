@@ -29,7 +29,7 @@ class Amoeba {
       this.run();
       if (
         dist( this.x, this.y, this.target.x, this.target.y ) > 
-        dist( this.lastPos.x, this.lastPos.y, this.target.x, this.target.y) || 
+        ( dist( this.lastPos.x, this.lastPos.y, this.target.x, this.target.y) + swarmFactor ) || 
         random() > randomFactor
         ) {
         this.tumble(); // Amoeba tries to move towards target, tumbles if moving away. Some randomness.

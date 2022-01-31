@@ -31,6 +31,7 @@ let fragShader = `
 			float r = 0.0;
 			float g = 0.0;
 			float b = 0.0;
+			float a = 1.0;
 
 			
 
@@ -41,8 +42,7 @@ let fragShader = `
 					float value = float(i) / distance(st, amoebasPos.xy) * 0.00003; 
 					g += value * 0.1 * (1.0 + sin(time * 0.0004 * float(i)));
 					b += value * 0.6 * (1.0 + sin(time * 0.0005 * float(i)));
-					r += value * 0.3 ;
-				}
+					r += value * 0.3 ;				}
 			}
 
 			for (int i = 0; i < ${MAX_FOOD}; i++) {
@@ -64,6 +64,6 @@ let fragShader = `
 			b += value;
 			r += value;
 
-			gl_FragColor = vec4(r, g, b, 1.0);
+			gl_FragColor = vec4(r, g, b, a);
 	}
 `;
